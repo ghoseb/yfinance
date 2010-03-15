@@ -10,16 +10,15 @@
   "Construct the complete URL given the params"
   [y1 m1 d1 y2 m2 d2 sym]
   (let [start (time/date-time y1 m1 d1)
-        end (time/date-time y2 m2 d2)
-        url (format +base-url+
-                    sym
-                    (dec (time/month start))
-                    (time/day start)
-                    (time/year start)
-                    (dec (time/month end))
-                    (time/day end)
-                    (time/year end))]
-    url))
+        end (time/date-time y2 m2 d2)]
+    (format +base-url+
+            sym
+            (dec (time/month start))
+            (time/day start)
+            (time/year start)
+            (dec (time/month end))
+            (time/day end)
+            (time/year end))))
 
 
 (defn- fetch-url
@@ -31,7 +30,7 @@
 (defn- collect-response
   "Wait for all the agents to finish and then return the response"
   [& agnts]
-  (apply await agnts)
+  (apply await agnts)                   ; FIXME: Have a sane timeout
   (for [a agnts]
     (if (= (status a) 200)
       (string a)
