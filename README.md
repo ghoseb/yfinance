@@ -3,6 +3,11 @@ YFINANCE
 
 A simple utility to download Historical stock prices from Y! Finance.
 
+DEPENDENCIES
+------------
+
+yfinance depends on `clj-time` and `clojure.contrib.http.agent`.
+
 USAGE
 -----
 
