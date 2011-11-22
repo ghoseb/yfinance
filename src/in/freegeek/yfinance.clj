@@ -1,8 +1,8 @@
 (ns #^{:author "Baishampayan Ghose"
        :doc "A few simple utils to download Y! Finance data"}
   in.freegeek.yfinance
-  (:require [clj-time.core :as time])
-  (:use [clj-http.client :as client]))
+  (:require [clj-time.core :as time]
+            [clj-http.client :as client]))
 
 (def #^{:private true} +base-url+ "http://itable.finance.yahoo.com/table.csv?s=%s&g=d&a=%d&b=%d&c=%d&d=%d&e=%d&f=%d")
 
