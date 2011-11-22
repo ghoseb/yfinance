@@ -29,12 +29,11 @@
 
 (defn- collect-response
   "Wait for all the agents to finish and then return the response"
-  [& agnts]
-  (apply await agnts)                   ; FIXME: Have a sane timeout
-  (for [a agnts]
-    (if (= (:status a) 200)
-      (:body a)
-      (:status a))))
+  [& responses]
+  (for [response responses]
+    (if (= (:status response) 200)
+      (:body response)
+      (:status response))))
 
 
 (defn fetch-historical-data
@@ -44,5 +43,5 @@
     (let [[y1 m1 d1] (parse-date start)
           [y2 m2 d2] (parse-date end)
           urls (map (partial get-full-url y1 m1 d1 y2 m2 d2) syms)
-          agnts (map fetch-url urls)]
-      (zipmap syms (apply collect-response agnts)))))
+          responses (pmap fetch-url urls)]
+      (zipmap syms (apply collect-response responses)))))
