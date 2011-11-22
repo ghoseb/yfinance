@@ -24,7 +24,7 @@
 (defn- fetch-url
   "Fetch one URL using HTTP Agent"
   [url]
-  (client/get url))
+  (client/get url {:throw-exceptions false}))
 
 
 (defn- collect-response
