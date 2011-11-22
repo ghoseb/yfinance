@@ -2,7 +2,7 @@
        :doc "A few simple utils to download Y! Finance data"}
   in.freegeek.yfinance
   (:require [clj-time.core :as time])
-  (:use [clojure.contrib.http.agent :only [http-agent status string]]))
+  (:use [clj-http.client :as client]))
 
 (def #^{:private true} +base-url+ "http://itable.finance.yahoo.com/table.csv?s=%s&g=d&a=%d&b=%d&c=%d&d=%d&e=%d&f=%d")
 
@@ -24,7 +24,7 @@
 (defn- fetch-url
   "Fetch one URL using HTTP Agent"
   [url]
-  (http-agent url))
+  (client/get url))
 
 
 (defn- collect-response
@@ -32,9 +32,9 @@
   [& agnts]
   (apply await agnts)                   ; FIXME: Have a sane timeout
   (for [a agnts]
-    (if (= (status a) 200)
-      (string a)
-      (status a))))
+    (if (= (:status a) 200)
+      (:body a)
+      (:status a))))
 
 
 (defn fetch-historical-data
