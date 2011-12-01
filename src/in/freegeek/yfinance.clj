@@ -2,7 +2,8 @@
        :doc "A few simple utils to download Y! Finance data"}
   in.freegeek.yfinance
   (:require [clj-time.core :as time]
-            [clj-http.client :as client]))
+            [clj-http.client :as client])
+  (:import java.net.URLEncoder))
 
 (def #^{:private true} +base-url+ "http://itable.finance.yahoo.com/table.csv?s=%s&g=d&a=%d&b=%d&c=%d&d=%d&e=%d&f=%d")
 
@@ -12,14 +13,13 @@
   (let [start (time/date-time y1 m1 d1)
         end (time/date-time y2 m2 d2)]
     (format +base-url+
-            sym
+            (URLEncoder/encode sym "UTF-8")
             (dec (time/month start))
             (time/day start)
             (time/year start)
             (dec (time/month end))
             (time/day end)
             (time/year end))))
-
 
 (defn- fetch-url
   "Fetch one URL using HTTP Agent"
