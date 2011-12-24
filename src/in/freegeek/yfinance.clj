@@ -43,5 +43,5 @@
     (let [[y1 m1 d1] (parse-date start)
           [y2 m2 d2] (parse-date end)
           urls (map (partial get-full-url y1 m1 d1 y2 m2 d2) syms)
-          responses (pmap fetch-url urls)]
+          responses (map fetch-url urls)]
       (zipmap syms (apply collect-response responses)))))
