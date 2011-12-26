@@ -39,7 +39,7 @@
 (defn fetch-historical-data
   "Fetch historical prices from Yahoo! finance for the given symbols between start and end"
   [start end syms]
-  (letfn [(parse-date [dt] (map #(Integer/parseInt %) (.split dt "-")))]
+  (letfn [(parse-date [^String dt] (map #(Integer/parseInt %) (.split dt "-")))]
     (let [[y1 m1 d1] (parse-date start)
           [y2 m2 d2] (parse-date end)
           urls (map (partial get-full-url y1 m1 d1 y2 m2 d2) syms)
