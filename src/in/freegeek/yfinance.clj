@@ -1,4 +1,4 @@
-u(ns #^{:author "Baishampayan Ghose"
+(ns #^{:author "Baishampayan Ghose"
        :doc "A few simple utils to download Y! Finance data"}
   in.freegeek.yfinance
   (:require [clj-time.core :as time]
@@ -26,7 +26,6 @@ u(ns #^{:author "Baishampayan Ghose"
   [url]
   (client/get url {:throw-exceptions false}))
 
-
 (defn- collect-response
   "Wait for all the agents to finish and then return the response"
   [& responses]
@@ -34,7 +33,6 @@ u(ns #^{:author "Baishampayan Ghose"
     (if (= (:status response) 200)
       (:body response)
       (:status response))))
-
 
 (defn fetch-historical-data
   "Fetch historical prices from Yahoo! finance for the given symbols between start and end"
