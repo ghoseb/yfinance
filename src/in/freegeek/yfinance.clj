@@ -5,7 +5,7 @@
             [clj-http.client :as client])
   (:import java.net.URLEncoder))
 
-(def #^{:private true} +base-url+ "http://itable.finance.yahoo.com/table.csv?s=%s&g=d&a=%d&b=%d&c=%d&d=%d&e=%d&f=%d&ignore=.csv")
+(def #^{:private true} +base-url+ "http://itable.finance.yahoo.com/table.csv?s=%s&g=%d&a=%d&b=%d&c=%d&d=%d&e=%d&f=%d&ignore=.csv")
 
 (defn- get-full-url
   "Construct the complete URL given the params"
