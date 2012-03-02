@@ -1,4 +1,4 @@
-(defproject yfinance "0.2.0"
+(defproject yfinance "0.2.0-SNAPSHOT"
   :description "Clojure code to access Yahoo! Finance"
   :author "Baishampayan Ghose"
   :dependencies [[org.clojure/clojure "1.3.0-beta1"]
